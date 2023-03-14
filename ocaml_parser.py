@@ -31,7 +31,10 @@ def parse_error_inner(error, lines):
     elif desc.startswith("The implementation"):
         return parse_interface_match(error, lines)
     else:
-        return f"unknown error {desc}"
+        full = error
+        for line in lines:
+            full += line
+        return Text(full)
 
 
 @group()
