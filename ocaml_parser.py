@@ -27,11 +27,33 @@ def parse_error_inner(error, lines):
     # figure out from the error what it will look like
     desc = error.split(": ")[1]
     if desc.startswith("This expression has type"):
-        return "type is not compatible with type"
+        return parse_expression_mismatch(error, lines)
     elif desc.startswith("The implementation"):
         return parse_interface_match(error, lines)
     else:
         return f"unknown error {desc}"
+
+
+@group()
+def parse_expression_mismatch(error, lines):
+    desc = error
+    error_started = False
+    the_error = ""
+
+    for line in lines:
+        # start of the error
+        if "Type" in line:
+            error_started = True
+            the_error += line
+            continue
+
+        if not error_started:
+            desc += line
+            continue
+        else:
+            the_error += line
+
+    yield Text(the_error)
 
 
 @group()
@@ -163,6 +185,7 @@ def parse_interface_match(error, lines):
         table.add_row(col1, col2)
 
     yield table
+
 #
 # The rest
 #
@@ -331,7 +354,7 @@ def main():
     # print errors
     for (idx, error) in enumerate(errors):
         # error number
-        progress = ProgressBar(total=len(errors), completed=idx)
+        progress = ProgressBar(total=len(errors), completed=idx+1)
         console.print(progress)
 
         # parse
