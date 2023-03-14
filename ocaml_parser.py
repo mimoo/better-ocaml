@@ -438,6 +438,9 @@ def split_errors(compiler_output):
 def main():
     # read stdin
     compiler_output = sys.stdin.readlines()
+    if len(compiler_output) == 0:
+        print("No errors found!")
+        return
 
     # split errors
     errors = split_errors(compiler_output)
