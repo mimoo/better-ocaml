@@ -13,12 +13,16 @@ The next best thing is to parse the compiler output and display it in a better f
 
 ## Installation
 
+you need python3, then install the only dependency:
+
 ```console
 $ python -m pip install rich
 ```
 
 ## Usage
 
+redirect stderr to the python script
+
 ```console
-$ dune build ./src/lib/pickles/composition_types 2>&1 | python /path/to/ocaml_parser.py
+$ dune build ./what/you/want/to/build 2>&1 | python /path/to/ocaml_parser.py
 ```
