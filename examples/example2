@@ -1,0 +1,410 @@
+File "src/lib/pickles/composition_types/composition_types.ml", line 1:
+Error: The implementation src/lib/pickles/composition_types/composition_types.pp.ml
+       does not match the interface src/lib/pickles/composition_types/.composition_types.objs/byte/composition_types.cmi:
+        ... ... ... In module Step.Proof_state.Per_proof:
+       Values do not match:
+         val typ :
+           (module Snarky_backendless.Snark_intf.Run with type field = 'a and type field_var = 'b and type run_state = 'c) ->
+           ('d, 'e, 'a, 'b,
+            (unit, 'c)
+            Snarky_backendless.Checked_runner.Simple.Types.Checked.t)
+           Snarky_backendless.Types.Typ.t ->
+           assert_16_bits:('b -> unit) ->
+           zero:(Limb_vector.Challenge.Constant.t,
+                 'a Limb_vector.Challenge.t, 'e, 'd)
+                Zero_values.t ->
+           feature_flags:Opt.Flag.t Pickles_types.Plonk_types.Features.t ->
+           (('a Limb_vector.Challenge.t,
+             'a Limb_vector.Challenge.t
+             Kimchi_backend_common.Scalar_challenge.t, 'd,
+             ('d, 'b Snarky_backendless.Snark_intf.Boolean0.t) Opt.t,
+             ('a Limb_vector.Challenge.t
+              Kimchi_backend_common.Scalar_challenge.t
+              Pickles_types.Hlist0.Id.t
+              Step.Proof_state.Deferred_values.Plonk.In_circuit.Lookup.t,
+              'b Snarky_backendless.Snark_intf.Boolean0.t)
+             Opt.t,
+             ('b Limb_vector.Challenge.t
+              Kimchi_backend_common.Scalar_challenge.t
+              Composition_types__.Bulletproof_challenge.t,
+              Pickles_types.Nat.z Backend.Tock.Rounds.plus_n)
+             Pickles_types.Vector.t Pickles_types.Hlist0.Id.t, 'b,
+             'b Snarky_backendless.Snark_intf.Boolean0.t)
+            In_circuit.t,
+            (Limb_vector.Challenge.Constant.t,
+             Limb_vector.Challenge.Constant.t
+             Kimchi_backend_common.Scalar_challenge.t, 'e,
+             'e option Pickles_types.Hlist0.Id.t Pickles_types.Hlist0.Id.t
+             Pickles_types.Hlist0.Id.t Pickles_types.Hlist0.Id.t
+             Pickles_types.Hlist0.Id.t Pickles_types.Hlist0.Id.t
+             Pickles_types.Hlist0.Id.t Pickles_types.Hlist0.Id.t,
+             Limb_vector.Challenge.Constant.t
+             Kimchi_backend_common.Scalar_challenge.t
+             Pickles_types.Hlist0.Id.t
+             Step.Proof_state.Deferred_values.Plonk.In_circuit.Lookup.t
+             option,
+             (Limb_vector.Challenge.Constant.t
+              Kimchi_backend_common.Scalar_challenge.t
+              Composition_types__.Bulletproof_challenge.t,
+              Pickles_types.Nat.z Backend.Tock.Rounds.plus_n)
+             Pickles_types.Vector.t Pickles_types.Hlist0.Id.t,
+             (Limb_vector.Constant.Hex64.t,
+              Composition_types__.Digest.Limbs.n)
+             Pickles_types.Vector.vec, Core_kernel.Bool.t)
+            In_circuit.t, 'a, 'b, 'c)
+           Snarky_backendless.Typ.t
+       is not included in
+         val typ :
+           (module Snarky_backendless.Snark_intf.Run with type field = 'a and type field_var = 'field_var and type run_state = 'state) ->
+           ('b, 'c, 'a, 'field_var,
+            (unit, 'state)
+            Snarky_backendless.Checked_runner.Simple.Types.Checked.t)
+           Snarky_backendless.Types.Typ.t ->
+           assert_16_bits:('field_var -> unit) ->
+           zero:(Limb_vector.Challenge.Constant.t,
+                 'a Limb_vector.Challenge.t, 'c Pickles_types.Hlist0.Id.t,
+                 'b Pickles_types.Hlist0.Id.t)
+                Zero_values.t ->
+           feature_flags:Pickles_types.Plonk_types.Opt.Flag.t
+                         Pickles_types.Plonk_types.Features.t ->
+           (('a Limb_vector.Challenge.t,
+             'a Limb_vector.Challenge.t Scalar_challenge.t, 'b,
+             ('b, 'field_var Snarky_backendless.Snark_intf.Boolean0.t) Opt.t,
+             ('a Limb_vector.Challenge.t Scalar_challenge.t
+              Pickles_types.Hlist0.Id.t
+              Deferred_values.Plonk.In_circuit.Lookup.t,
+              'field_var Snarky_backendless.Snark_intf.Boolean0.t)
+             Opt.t,
+             ('a Limb_vector.Challenge.t Scalar_challenge.t
+              Bulletproof_challenge.t, Backend.Tock.Rounds.n)
+             Pickles_types.Vector.t Pickles_types.Hlist0.Id.t, 'field_var,
+             'field_var Snarky_backendless.Snark_intf.Boolean0.t)
+            In_circuit.t,
+            (Limb_vector.Challenge.Constant.t,
+             Limb_vector.Challenge.Constant.t Scalar_challenge.t, 'c,
+             'c option,
+             Limb_vector.Challenge.Constant.t Scalar_challenge.t
+             Deferred_values.Plonk.In_circuit.Lookup.t option,
+             (Limb_vector.Challenge.Constant.t Scalar_challenge.t
+              Bulletproof_challenge.t, Backend.Tock.Rounds.n)
+             Pickles_types.Vector.t Pickles_types.Hlist0.Id.t,
+             (Limb_vector.Constant.Hex64.t, Digest.Limbs.n)
+             Pickles_types.Vector.t, bool)
+            In_circuit.t, 'a, 'field_var, 'state)
+           Snarky_backendless.Typ.t
+       The type
+         (module Snarky_backendless.Snark_intf.Run with type field = 'a and type field_var = 'b and type run_state = 'c) ->
+         ('d, 'e, 'a, 'b,
+          (unit, 'c) Snarky_backendless.Checked_runner.Simple.Types.Checked.t)
+         Snarky_backendless.Types.Typ.t ->
+         assert_16_bits:('b -> unit) ->
+         zero:(Limb_vector.Challenge.Constant.t, 'a Limb_vector.Challenge.t,
+               'e, 'd)
+              Zero_values.t ->
+         feature_flags:Opt.Flag.t Pickles_types.Plonk_types.Features.t ->
+         (('a Limb_vector.Challenge.t,
+           'a Limb_vector.Challenge.t
+           Kimchi_backend_common.Scalar_challenge.t, 'd,
+           ('d, 'b Snarky_backendless.Snark_intf.Boolean0.t) Opt.t,
+           ('a Limb_vector.Challenge.t
+            Kimchi_backend_common.Scalar_challenge.t
+            Pickles_types.Hlist0.Id.t
+            Step.Proof_state.Deferred_values.Plonk.In_circuit.Lookup.t,
+            'b Snarky_backendless.Snark_intf.Boolean0.t)
+           Opt.t,
+           ('b Limb_vector.Challenge.t
+            Kimchi_backend_common.Scalar_challenge.t
+            Composition_types__.Bulletproof_challenge.t,
+            Pickles_types.Nat.z Backend.Tock.Rounds.plus_n)
+           Pickles_types.Vector.t Pickles_types.Hlist0.Id.t, 'b,
+           'b Snarky_backendless.Snark_intf.Boolean0.t)
+          In_circuit.t,
+          (Limb_vector.Challenge.Constant.t,
+           Limb_vector.Challenge.Constant.t
+           Kimchi_backend_common.Scalar_challenge.t, 'e,
+           'e option Pickles_types.Hlist0.Id.t Pickles_types.Hlist0.Id.t
+           Pickles_types.Hlist0.Id.t Pickles_types.Hlist0.Id.t
+           Pickles_types.Hlist0.Id.t Pickles_types.Hlist0.Id.t
+           Pickles_types.Hlist0.Id.t Pickles_types.Hlist0.Id.t,
+           Limb_vector.Challenge.Constant.t
+           Kimchi_backend_common.Scalar_challenge.t Pickles_types.Hlist0.Id.t
+           Step.Proof_state.Deferred_values.Plonk.In_circuit.Lookup.t option,
+           (Limb_vector.Challenge.Constant.t
+            Kimchi_backend_common.Scalar_challenge.t
+            Composition_types__.Bulletproof_challenge.t,
+            Pickles_types.Nat.z Backend.Tock.Rounds.plus_n)
+           Pickles_types.Vector.t Pickles_types.Hlist0.Id.t,
+           (Limb_vector.Constant.Hex64.t, Composition_types__.Digest.Limbs.n)
+           Pickles_types.Vector.vec, Core_kernel.Bool.t)
+          In_circuit.t, 'a, 'b, 'c)
+         Snarky_backendless.Typ.t
+       is not compatible with the type
+         (module Snarky_backendless.Snark_intf.Run with type field = 'a and type field_var = 'b and type run_state = 'c) ->
+         ('d, 'e, 'a, 'b,
+          (unit, 'c) Snarky_backendless.Checked_runner.Simple.Types.Checked.t)
+         Snarky_backendless.Types.Typ.t ->
+         assert_16_bits:('b -> unit) ->
+         zero:(Limb_vector.Challenge.Constant.t, 'a Limb_vector.Challenge.t,
+               'e Pickles_types.Hlist0.Id.t, 'd Pickles_types.Hlist0.Id.t)
+              Zero_values.t ->
+         feature_flags:Pickles_types.Plonk_types.Opt.Flag.t
+                       Pickles_types.Plonk_types.Features.t ->
+         (('a Limb_vector.Challenge.t,
+           'a Limb_vector.Challenge.t Scalar_challenge.t, 'd,
+           ('d, 'b Snarky_backendless.Snark_intf.Boolean0.t) Opt.t,
+           ('a Limb_vector.Challenge.t Scalar_challenge.t
+            Pickles_types.Hlist0.Id.t
+            Deferred_values.Plonk.In_circuit.Lookup.t,
+            'b Snarky_backendless.Snark_intf.Boolean0.t)
+           Opt.t,
+           ('a Limb_vector.Challenge.t Scalar_challenge.t
+            Bulletproof_challenge.t, Backend.Tock.Rounds.n)
+           Pickles_types.Vector.t Pickles_types.Hlist0.Id.t, 'b,
+           'b Snarky_backendless.Snark_intf.Boolean0.t)
+          In_circuit.t,
+          (Limb_vector.Challenge.Constant.t,
+           Limb_vector.Challenge.Constant.t Scalar_challenge.t, 'e,
+           'e option,
+           Limb_vector.Challenge.Constant.t Scalar_challenge.t
+           Deferred_values.Plonk.In_circuit.Lookup.t option,
+           (Limb_vector.Challenge.Constant.t Scalar_challenge.t
+            Bulletproof_challenge.t, Backend.Tock.Rounds.n)
+           Pickles_types.Vector.t Pickles_types.Hlist0.Id.t,
+           (Limb_vector.Constant.Hex64.t, Digest.Limbs.n)
+           Pickles_types.Vector.t, bool)
+          In_circuit.t, 'a, 'b, 'c)
+         Snarky_backendless.Typ.t
+       Type
+         (('a Limb_vector.Challenge.t,
+           'a Limb_vector.Challenge.t
+           Kimchi_backend_common.Scalar_challenge.t, 'd,
+           ('d, 'b Snarky_backendless.Snark_intf.Boolean0.t) Opt.t,
+           ('a Limb_vector.Challenge.t
+            Kimchi_backend_common.Scalar_challenge.t
+            Pickles_types.Hlist0.Id.t
+            Step.Proof_state.Deferred_values.Plonk.In_circuit.Lookup.t,
+            'b Snarky_backendless.Snark_intf.Boolean0.t)
+           Opt.t,
+           ('b Limb_vector.Challenge.t
+            Kimchi_backend_common.Scalar_challenge.t
+            Composition_types__.Bulletproof_challenge.t,
+            Pickles_types.Nat.z Backend.Tock.Rounds.plus_n)
+           Pickles_types.Vector.t Pickles_types.Hlist0.Id.t, 'b,
+           'b Snarky_backendless.Snark_intf.Boolean0.t)
+          In_circuit.t,
+          (Limb_vector.Challenge.Constant.t,
+           Limb_vector.Challenge.Constant.t
+           Kimchi_backend_common.Scalar_challenge.t, 'e,
+           'e option Pickles_types.Hlist0.Id.t Pickles_types.Hlist0.Id.t
+           Pickles_types.Hlist0.Id.t Pickles_types.Hlist0.Id.t
+           Pickles_types.Hlist0.Id.t Pickles_types.Hlist0.Id.t
+           Pickles_types.Hlist0.Id.t Pickles_types.Hlist0.Id.t,
+           Limb_vector.Challenge.Constant.t
+           Kimchi_backend_common.Scalar_challenge.t Pickles_types.Hlist0.Id.t
+           Step.Proof_state.Deferred_values.Plonk.In_circuit.Lookup.t option,
+           (Limb_vector.Challenge.Constant.t
+            Kimchi_backend_common.Scalar_challenge.t
+            Composition_types__.Bulletproof_challenge.t,
+            Pickles_types.Nat.z Backend.Tock.Rounds.plus_n)
+           Pickles_types.Vector.t Pickles_types.Hlist0.Id.t,
+           (Limb_vector.Constant.Hex64.t, Composition_types__.Digest.Limbs.n)
+           Pickles_types.Vector.vec, Core_kernel.Bool.t)
+          In_circuit.t, 'a, 'b, 'c)
+         Snarky_backendless.Typ.t =
+           (('a Limb_vector.Challenge.t,
+             'a Limb_vector.Challenge.t
+             Kimchi_backend_common.Scalar_challenge.t, 'd,
+             ('d, 'b Snarky_backendless.Snark_intf.Boolean0.t) Opt.t,
+             ('a Limb_vector.Challenge.t
+              Kimchi_backend_common.Scalar_challenge.t
+              Pickles_types.Hlist0.Id.t
+              Step.Proof_state.Deferred_values.Plonk.In_circuit.Lookup.t,
+              'b Snarky_backendless.Snark_intf.Boolean0.t)
+             Opt.t,
+             ('b Limb_vector.Challenge.t
+              Kimchi_backend_common.Scalar_challenge.t
+              Composition_types__.Bulletproof_challenge.t,
+              Pickles_types.Nat.z Backend.Tock.Rounds.plus_n)
+             Pickles_types.Vector.t Pickles_types.Hlist0.Id.t, 'b,
+             'b Snarky_backendless.Snark_intf.Boolean0.t)
+            In_circuit.t,
+            (Limb_vector.Challenge.Constant.t,
+             Limb_vector.Challenge.Constant.t
+             Kimchi_backend_common.Scalar_challenge.t, 'e,
+             'e option Pickles_types.Hlist0.Id.t Pickles_types.Hlist0.Id.t
+             Pickles_types.Hlist0.Id.t Pickles_types.Hlist0.Id.t
+             Pickles_types.Hlist0.Id.t Pickles_types.Hlist0.Id.t
+             Pickles_types.Hlist0.Id.t Pickles_types.Hlist0.Id.t,
+             Limb_vector.Challenge.Constant.t
+             Kimchi_backend_common.Scalar_challenge.t
+             Pickles_types.Hlist0.Id.t
+             Step.Proof_state.Deferred_values.Plonk.In_circuit.Lookup.t
+             option,
+             (Limb_vector.Challenge.Constant.t
+              Kimchi_backend_common.Scalar_challenge.t
+              Composition_types__.Bulletproof_challenge.t,
+              Pickles_types.Nat.z Backend.Tock.Rounds.plus_n)
+             Pickles_types.Vector.t Pickles_types.Hlist0.Id.t,
+             (Limb_vector.Constant.Hex64.t,
+              Composition_types__.Digest.Limbs.n)
+             Pickles_types.Vector.vec, Core_kernel.Bool.t)
+            In_circuit.t, 'a, 'b,
+            (unit, 'c) Snarky_backendless__.Checked_runner.Simple.t)
+           Snarky_backendless.Types.Typ.T.typ
+       is not compatible with type
+         (('a Limb_vector.Challenge.t,
+           'a Limb_vector.Challenge.t Scalar_challenge.t, 'd,
+           ('d, 'b Snarky_backendless.Snark_intf.Boolean0.t) Opt.t,
+           ('a Limb_vector.Challenge.t Scalar_challenge.t
+            Pickles_types.Hlist0.Id.t
+            Deferred_values.Plonk.In_circuit.Lookup.t,
+            'b Snarky_backendless.Snark_intf.Boolean0.t)
+           Opt.t,
+           ('a Limb_vector.Challenge.t Scalar_challenge.t
+            Bulletproof_challenge.t, Backend.Tock.Rounds.n)
+           Pickles_types.Vector.t Pickles_types.Hlist0.Id.t, 'b,
+           'b Snarky_backendless.Snark_intf.Boolean0.t)
+          In_circuit.t,
+          (Limb_vector.Challenge.Constant.t,
+           Limb_vector.Challenge.Constant.t Scalar_challenge.t, 'e,
+           'e option,
+           Limb_vector.Challenge.Constant.t Scalar_challenge.t
+           Deferred_values.Plonk.In_circuit.Lookup.t option,
+           (Limb_vector.Challenge.Constant.t Scalar_challenge.t
+            Bulletproof_challenge.t, Backend.Tock.Rounds.n)
+           Pickles_types.Vector.t Pickles_types.Hlist0.Id.t,
+           (Limb_vector.Constant.Hex64.t, Digest.Limbs.n)
+           Pickles_types.Vector.t, bool)
+          In_circuit.t, 'a, 'b, 'c)
+         Snarky_backendless.Typ.t =
+           (('a Limb_vector.Challenge.t,
+             'a Limb_vector.Challenge.t Scalar_challenge.t, 'd,
+             ('d, 'b Snarky_backendless.Snark_intf.Boolean0.t) Opt.t,
+             ('a Limb_vector.Challenge.t Scalar_challenge.t
+              Pickles_types.Hlist0.Id.t
+              Deferred_values.Plonk.In_circuit.Lookup.t,
+              'b Snarky_backendless.Snark_intf.Boolean0.t)
+             Opt.t,
+             ('a Limb_vector.Challenge.t Scalar_challenge.t
+              Bulletproof_challenge.t, Backend.Tock.Rounds.n)
+             Pickles_types.Vector.t Pickles_types.Hlist0.Id.t, 'b,
+             'b Snarky_backendless.Snark_intf.Boolean0.t)
+            In_circuit.t,
+            (Limb_vector.Challenge.Constant.t,
+             Limb_vector.Challenge.Constant.t Scalar_challenge.t, 'e,
+             'e option,
+             Limb_vector.Challenge.Constant.t Scalar_challenge.t
+             Deferred_values.Plonk.In_circuit.Lookup.t option,
+             (Limb_vector.Challenge.Constant.t Scalar_challenge.t
+              Bulletproof_challenge.t, Backend.Tock.Rounds.n)
+             Pickles_types.Vector.t Pickles_types.Hlist0.Id.t,
+             (Limb_vector.Constant.Hex64.t, Digest.Limbs.n)
+             Pickles_types.Vector.t, bool)
+            In_circuit.t, 'a, 'b,
+            (unit, 'c) Snarky_backendless__.Checked_runner.Simple.t)
+           Snarky_backendless.Types.Typ.T.typ 
+       Type
+         ('a Limb_vector.Challenge.t,
+          'a Limb_vector.Challenge.t Kimchi_backend_common.Scalar_challenge.t,
+          'd, ('d, 'b Snarky_backendless.Snark_intf.Boolean0.t) Opt.t,
+          ('a Limb_vector.Challenge.t
+           Kimchi_backend_common.Scalar_challenge.t Pickles_types.Hlist0.Id.t
+           Step.Proof_state.Deferred_values.Plonk.In_circuit.Lookup.t,
+           'b Snarky_backendless.Snark_intf.Boolean0.t)
+          Opt.t,
+          ('b Limb_vector.Challenge.t
+           Kimchi_backend_common.Scalar_challenge.t
+           Composition_types__.Bulletproof_challenge.t,
+           Pickles_types.Nat.z Backend.Tock.Rounds.plus_n)
+          Pickles_types.Vector.t Pickles_types.Hlist0.Id.t, 'b,
+          'b Snarky_backendless.Snark_intf.Boolean0.t)
+         In_circuit.t =
+           (('a Limb_vector.Challenge.t,
+             'a Limb_vector.Challenge.t
+             Kimchi_backend_common.Scalar_challenge.t, 'd,
+             ('d, 'b Snarky_backendless.Snark_intf.Boolean0.t) Opt.t,
+             ('a Limb_vector.Challenge.t
+              Kimchi_backend_common.Scalar_challenge.t
+              Pickles_types.Hlist0.Id.t
+              Step.Proof_state.Deferred_values.Plonk.In_circuit.Lookup.t,
+              'b Snarky_backendless.Snark_intf.Boolean0.t)
+             Opt.t, 'b Snarky_backendless.Snark_intf.Boolean0.t)
+            Step.Proof_state.Deferred_values.Plonk.In_circuit.t,
+            'a Limb_vector.Challenge.t
+            Kimchi_backend_common.Scalar_challenge.t, 'd,
+            ('b Limb_vector.Challenge.t
+             Kimchi_backend_common.Scalar_challenge.t
+             Composition_types__.Bulletproof_challenge.t,
+             Pickles_types.Nat.z Backend.Tock.Rounds.plus_n)
+            Pickles_types.Vector.t Pickles_types.Hlist0.Id.t, 'b,
+            'b Snarky_backendless.Snark_intf.Boolean0.t)
+           Step.Proof_state.Per_proof.t_
+       is not compatible with type
+         ('a Limb_vector.Challenge.t,
+          'a Limb_vector.Challenge.t Scalar_challenge.t, 'd,
+          ('d, 'b Snarky_backendless.Snark_intf.Boolean0.t) Opt.t,
+          ('a Limb_vector.Challenge.t Scalar_challenge.t
+           Pickles_types.Hlist0.Id.t
+           Deferred_values.Plonk.In_circuit.Lookup.t,
+           'b Snarky_backendless.Snark_intf.Boolean0.t)
+          Opt.t,
+          ('a Limb_vector.Challenge.t Scalar_challenge.t
+           Bulletproof_challenge.t, Backend.Tock.Rounds.n)
+          Pickles_types.Vector.t Pickles_types.Hlist0.Id.t, 'b,
+          'b Snarky_backendless.Snark_intf.Boolean0.t)
+         In_circuit.t =
+           (('a Limb_vector.Challenge.t,
+             'a Limb_vector.Challenge.t Scalar_challenge.t, 'd,
+             ('d, 'b Snarky_backendless.Snark_intf.Boolean0.t) Opt.t,
+             ('a Limb_vector.Challenge.t Scalar_challenge.t
+              Pickles_types.Hlist0.Id.t
+              Deferred_values.Plonk.In_circuit.Lookup.t,
+              'b Snarky_backendless.Snark_intf.Boolean0.t)
+             Opt.t, 'b Snarky_backendless.Snark_intf.Boolean0.t)
+            Step.Proof_state.Deferred_values.Plonk.In_circuit.t,
+            'a Limb_vector.Challenge.t Scalar_challenge.t, 'd,
+            ('a Limb_vector.Challenge.t Scalar_challenge.t
+             Bulletproof_challenge.t, Backend.Tock.Rounds.n)
+            Pickles_types.Vector.t Pickles_types.Hlist0.Id.t, 'b,
+            'b Snarky_backendless.Snark_intf.Boolean0.t)
+           Step.Proof_state.Per_proof.t_ 
+       Type
+         ('b Limb_vector.Challenge.t Kimchi_backend_common.Scalar_challenge.t
+          Composition_types__.Bulletproof_challenge.t,
+          Pickles_types.Nat.z Backend.Tock.Rounds.plus_n)
+         Pickles_types.Vector.t Pickles_types.Hlist0.Id.t =
+           ('b Limb_vector.Challenge.t
+            Kimchi_backend_common.Scalar_challenge.t
+            Composition_types__.Bulletproof_challenge.t,
+            Pickles_types.Nat.z Backend.Tock.Rounds.plus_n)
+           Pickles_types.Vector.T.t
+       is not compatible with type
+         ('a Limb_vector.Challenge.t Scalar_challenge.t
+          Bulletproof_challenge.t, Backend.Tock.Rounds.n)
+         Pickles_types.Vector.t Pickles_types.Hlist0.Id.t =
+           ('a Limb_vector.Challenge.t Scalar_challenge.t
+            Bulletproof_challenge.t, Backend.Tock.Rounds.n)
+           Pickles_types.Vector.T.t 
+       Type
+         'b Limb_vector.Challenge.t Kimchi_backend_common.Scalar_challenge.t
+         Composition_types__.Bulletproof_challenge.t =
+           'b Limb_vector.Challenge.t
+           Kimchi_backend_common.Scalar_challenge.t
+           Mina_wire_types.Pickles_bulletproof_challenge.V1.t
+       is not compatible with type
+         'a Limb_vector.Challenge.t Scalar_challenge.t
+         Bulletproof_challenge.t =
+           'a Limb_vector.Challenge.t Scalar_challenge.t
+           Mina_wire_types.Pickles_bulletproof_challenge.V1.t 
+       Type
+         'b Limb_vector.Challenge.t Kimchi_backend_common.Scalar_challenge.t
+           = 'b Limb_vector.Challenge.t Kimchi_types.scalar_challenge
+       is not compatible with type
+         'a Limb_vector.Challenge.t Scalar_challenge.t =
+           'a Limb_vector.Challenge.t Kimchi_types.scalar_challenge 
+       Type 'b Limb_vector.Challenge.t = 'b is not compatible with type
+         'a Limb_vector.Challenge.t = 'a 
+       File "src/lib/pickles/composition_types/composition_types.mli", lines 1324-1379, characters 6-35:
+         Expected declaration
+       File "src/lib/pickles/composition_types/composition_types.ml", line 1459, characters 10-13:
+         Actual declaration

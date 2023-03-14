@@ -1,0 +1,138 @@
+File "src/lib/pickles/composition_types/branch_data.ml", line 104, characters 13-64:
+104 |       + pack (Pickles_types.Vector.to_list proofs_verified_mask)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Error: This expression has type f Pickles_base.Proofs_verified.boolean list
+       but an expression was expected of type Impl.Boolean.var list
+       Type
+         f Pickles_base.Proofs_verified.boolean =
+           f Snarky_backendless.Boolean.t
+       is not compatible with type
+         Impl.Boolean.var = Impl.Field.t Snarky_backendless.Boolean.t 
+       Type f is not compatible with type Impl.Field.t = field_var 
+File "src/lib/pickles/composition_types/spec.ml", line 1:
+Error: The implementation src/lib/pickles/composition_types/spec.pp.ml
+       does not match the interface src/lib/pickles/composition_types/.composition_types.objs/byte/composition_types__Spec.cmi:
+        Values do not match:
+          val typ :
+            assert_16_bits:('a -> unit) ->
+            (module Snarky_backendless.Snark_intf.Run with type field = 'b and type field_var = 'a and type run_state = 'c) ->
+            ('d, 'e, 'b, 'a,
+             (unit, 'c) Snarky_backendless__.Checked_runner.Simple.t)
+            Snarky_backendless__.Types.Typ.t ->
+            ('f, 'g,
+             < bool1 : bool;
+               bool2 : 'a Snarky_backendless.Snark_intf.Boolean0.t;
+               branch_data1 : Composition_types__.Branch_data.t;
+               branch_data2 : ('b, 'a)
+                              Composition_types__.Branch_data.Checked.t;
+               bulletproof_challenge1 : Limb_vector.Challenge.Constant.t Sc.t
+                                        Composition_types__.Bulletproof_challenge.t;
+               bulletproof_challenge2 : 'a Limb_vector.Challenge.t Sc.t
+                                        Composition_types__.Bulletproof_challenge.t;
+               challenge1 : Limb_vector.Challenge.Constant.t;
+               challenge2 : 'a Limb_vector.Challenge.t;
+               digest1 : (Limb_vector.Constant.Hex64.t,
+                          Composition_types__Digest.Limbs.n)
+                         Pickles_types.Vector.vec;
+               digest2 : 'a; field1 : 'e; field2 : 'd; .. >)
+            T.t -> ('g, 'f, 'b, 'a, 'c) Snarky_backendless.Typ.t
+        is not included in
+          val typ :
+            assert_16_bits:('field_var -> unit) ->
+            (module Snarky_backendless.Snark_intf.Run with type field = 'f and type field_var = 'field_var and type run_state = 'state) ->
+            ('b, 'c, 'f, 'field_var,
+             (unit, 'state)
+             Snarky_backendless.Checked_runner.Simple.Types.Checked.t)
+            Snarky_backendless.Types.Typ.t ->
+            ('d, 'e,
+             < bool1 : bool;
+               bool2 : 'field_var Snarky_backendless.Snark_intf.Boolean0.t;
+               branch_data1 : Composition_types__.Branch_data.t;
+               branch_data2 : ('f, 'field_var)
+                              Composition_types__.Branch_data.Checked.t;
+               bulletproof_challenge1 : Limb_vector.Challenge.Constant.t
+                                        Kimchi_backend_common.Scalar_challenge.t
+                                        Composition_types__.Bulletproof_challenge.t;
+               bulletproof_challenge2 : 'f Limb_vector.Challenge.t
+                                        Kimchi_backend_common.Scalar_challenge.t
+                                        Composition_types__.Bulletproof_challenge.t;
+               challenge1 : Limb_vector.Challenge.Constant.t;
+               challenge2 : 'f Limb_vector.Challenge.t;
+               digest1 : (Limb_vector.Constant.Hex64.t,
+                          Composition_types__.Digest.Limbs.n)
+                         Pickles_types.Vector.vec;
+               digest2 : 'field_var; field1 : 'c; field2 : 'b; .. >)
+            T.t -> ('e, 'd, 'f, 'field_var, 'state) Snarky_backendless.Typ.t
+        The type
+          assert_16_bits:('a -> unit) ->
+          (module Snarky_backendless.Snark_intf.Run with type field = 'b and type field_var = 'a and type run_state = 'c) ->
+          ('d, 'e, 'b, 'a,
+           (unit, 'c) Snarky_backendless__.Checked_runner.Simple.t)
+          Snarky_backendless__.Types.Typ.t ->
+          ('f, 'g,
+           < bool1 : bool;
+             bool2 : 'a Snarky_backendless.Snark_intf.Boolean0.t;
+             branch_data1 : Composition_types__.Branch_data.t;
+             branch_data2 : ('b, 'a)
+                            Composition_types__.Branch_data.Checked.t;
+             bulletproof_challenge1 : Limb_vector.Challenge.Constant.t Sc.t
+                                      Composition_types__.Bulletproof_challenge.t;
+             bulletproof_challenge2 : 'a Limb_vector.Challenge.t Sc.t
+                                      Composition_types__.Bulletproof_challenge.t;
+             challenge1 : Limb_vector.Challenge.Constant.t;
+             challenge2 : 'a Limb_vector.Challenge.t;
+             digest1 : (Limb_vector.Constant.Hex64.t,
+                        Composition_types__Digest.Limbs.n)
+                       Pickles_types.Vector.vec;
+             digest2 : 'a; field1 : 'e; field2 : 'd; .. >)
+          T.t -> ('g, 'f, 'b, 'a, 'c) Snarky_backendless.Typ.t
+        is not compatible with the type
+          assert_16_bits:('a -> unit) ->
+          (module Snarky_backendless.Snark_intf.Run with type field = 'b and type field_var = 'a and type run_state = 'c) ->
+          ('d, 'e, 'b, 'a,
+           (unit, 'c)
+           Snarky_backendless.Checked_runner.Simple.Types.Checked.t)
+          Snarky_backendless.Types.Typ.t ->
+          ('f, 'g,
+           < bool1 : bool;
+             bool2 : 'a Snarky_backendless.Snark_intf.Boolean0.t;
+             branch_data1 : Composition_types__.Branch_data.t;
+             branch_data2 : ('b, 'a)
+                            Composition_types__.Branch_data.Checked.t;
+             bulletproof_challenge1 : Limb_vector.Challenge.Constant.t
+                                      Kimchi_backend_common.Scalar_challenge.t
+                                      Composition_types__.Bulletproof_challenge.t;
+             bulletproof_challenge2 : 'b Limb_vector.Challenge.t
+                                      Kimchi_backend_common.Scalar_challenge.t
+                                      Composition_types__.Bulletproof_challenge.t;
+             challenge1 : Limb_vector.Challenge.Constant.t;
+             challenge2 : 'b Limb_vector.Challenge.t;
+             digest1 : (Limb_vector.Constant.Hex64.t,
+                        Composition_types__.Digest.Limbs.n)
+                       Pickles_types.Vector.vec;
+             digest2 : 'a; field1 : 'e; field2 : 'd; .. >)
+          T.t -> ('g, 'f, 'b, 'a, 'c) Snarky_backendless.Typ.t
+        Type
+          'a Limb_vector.Challenge.t Sc.t
+          Composition_types__.Bulletproof_challenge.t =
+            'a Limb_vector.Challenge.t Sc.t
+            Mina_wire_types.Pickles_bulletproof_challenge.V1.t
+        is not compatible with type
+          'b Limb_vector.Challenge.t Kimchi_backend_common.Scalar_challenge.t
+          Composition_types__.Bulletproof_challenge.t =
+            'b Limb_vector.Challenge.t
+            Kimchi_backend_common.Scalar_challenge.t
+            Mina_wire_types.Pickles_bulletproof_challenge.V1.t 
+        Type
+          'a Limb_vector.Challenge.t Sc.t =
+            'a Limb_vector.Challenge.t Kimchi_types.scalar_challenge
+        is not compatible with type
+          'b Limb_vector.Challenge.t Kimchi_backend_common.Scalar_challenge.t
+            = 'b Limb_vector.Challenge.t Kimchi_types.scalar_challenge 
+        Type 'a Limb_vector.Challenge.t = 'a is not compatible with type
+          'b Limb_vector.Challenge.t = 'b 
+        Types for method bulletproof_challenge2 are incompatible
+        File "src/lib/pickles/composition_types/spec.mli", lines 81-118, characters 0-62:
+          Expected declaration
+        File "src/lib/pickles/composition_types/spec.ml", line 455, characters 4-7:
+          Actual declaration
