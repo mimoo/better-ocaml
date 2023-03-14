@@ -37,29 +37,118 @@ def parse_error_inner(error, lines):
         return Text(full)
 
 
+def parse_backtrace(lines):
+    frame_error = ""
+    backtrace = []
+
+    for line in lines:
+        # end of suberrors part
+        if "Types for method" in line:
+            continue
+
+        # start of a suberror
+        if "Values do not match:" in line or "The type" in line or "Type\n" in line or "Type " in line:
+            # not the first, let's add the previous one
+            backtrace.append(frame_error)
+            frame_error = line
+            continue
+
+        # append to frame error
+        frame_error += line
+
+    # add pending one
+    backtrace.append(frame_error)
+
+    # reverse the backtrace
+    backtrace.reverse()
+
+    # second pass on the backtrace to get split the "impl" and "intf"
+    for (idx, bt) in enumerate(backtrace):
+        if "is not compatible with type" in bt:
+            backtrace[idx] = bt.split("is not compatible with type")
+        elif "is not compatible with the type" in bt:
+            backtrace[idx] = bt.split("is not compatible with the type")
+        elif "is not included in" in bt:
+            backtrace[idx] = bt.split("is not included in")
+        elif "but an expression was expected of type" in bt:
+            backtrace[idx] = bt.split("but an expression was expected of type")
+        else:
+            print(bt)
+            raise "could not split the suberror in two parts"
+
+        backtrace[idx][0] = backtrace[idx][0].lstrip("Type")
+        backtrace[idx][0] = backtrace[idx][0].lstrip("The type")
+        backtrace[idx][0] = backtrace[idx][0].lstrip("Values do not match:")
+        backtrace[idx][0] = backtrace[idx][0].strip()
+        backtrace[idx][1] = backtrace[idx][1].strip()
+
+    return backtrace
+
+
 @group()
 def parse_expression_mismatch(error, lines):
     desc = error
     error_started = False
     the_error = ""
 
-    for line in lines:
-        # start of the error
-        if "Type" in line:
-            error_started = True
-            the_error += line
-            continue
+    backtrace = parse_backtrace(lines)
 
-        if not error_started:
-            desc += line
-            continue
-        else:
-            the_error += line
+    # description
+    yield Text("the implementation does not match the interface\n")
 
-    yield Text(the_error)
+    # files
+    table = Table(expand=True, box=None)
+    table.add_column(f"implementation", justify="center",
+                     style="cyan", no_wrap=False, ratio=1)
+    table.add_column(
+        f"expected by interface", style="magenta", justify="center", ratio=1)
+
+    # backtrace
+    for (idx, [impl, intf]) in enumerate(backtrace):
+        # TODO: we should find the snippet of the previous frame into the next frame and highlight it
+        snippet1 = Syntax(impl, "ocaml", line_numbers=True, word_wrap=True)
+        snippet2 = Syntax(intf, "ocaml", line_numbers=True, word_wrap=True)
+
+        # from the start and the length of the substring,
+        # find the line number and the column to start in the string
+        # and the line number and column to end in the string
+        def find_ln_and_col(s, start, length):
+            # find the line number and colum of the start
+            ln = s[:start].count("\n") + 1
+            col = start - s[:start].rfind("\n") - 1
+
+            # find the line number and column of the end
+            end = start + length
+            ln2 = s[:end].count("\n") + 1
+            col2 = end - s[:end].rfind("\n") - 1
+
+            return ((ln, col), (ln2, col2))
+
+        if idx != 0:
+            [prev_impl, prev_intf] = backtrace[idx-1]
+
+            to_search = prev_impl.split("=")[0].strip()
+            pos = impl.find(to_search)
+            if pos != -1 and prev_impl.count("=") == 1:
+                (start, end) = find_ln_and_col(impl, pos, len(to_search))
+                style = Style(bgcolor='deep_pink4')
+                snippet1.stylize_range(style, start, end)
+
+            to_search = prev_intf.split("=")[0].strip()
+            pos = intf.find(to_search)
+            if pos != -1 and prev_intf.count("=") == 1:
+                (start, end) = find_ln_and_col(intf, pos, len(to_search))
+                style = Style(bgcolor='deep_pink4')
+                snippet2.stylize_range(style, start, end)
+
+        col1 = Panel(snippet1)
+        col2 = Panel(snippet2)
+        table.add_row(col1, col2)
+
+    yield table
 
 
-@group()
+@ group()
 def parse_interface_match(error, lines):
     # desc part
     desc = error
@@ -326,7 +415,7 @@ def split_errors(compiler_output):
 
     for line in compiler_output:
         # new error
-        if line[:6] == 'File "' and in_error:
+        if line.startswith('File "') and in_error:
             errors.append(current_error)
             current_error = []
 
