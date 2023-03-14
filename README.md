@@ -1,4 +1,8 @@
-The OCaml has real bad error messages.
+The OCaml has real bad error messages. We can do better:
+
+<img width="1269" alt="Screenshot 2023-03-14 at 11 10 14 PM" src="https://user-images.githubusercontent.com/1316043/225153659-c446b85d-5cc3-400c-a6b6-7cb8bfd834f4.png">
+
+## Tell me more
 
 There isn't much I can do about this, unless I start working within the compiler. And these changes are hairy to make.
 
