@@ -104,8 +104,10 @@ def parse_backtrace(lines):
     # backtrace
     for (idx, [impl, intf]) in enumerate(backtrace):
         # TODO: we should find the snippet of the previous frame into the next frame and highlight it
-        snippet1 = Syntax(impl, "ocaml", line_numbers=True, word_wrap=True)
-        snippet2 = Syntax(intf, "ocaml", line_numbers=True, word_wrap=True)
+        snippet1 = Syntax(impl, "ocaml", line_numbers=True,
+                          word_wrap=True, indent_guides=True)
+        snippet2 = Syntax(intf, "ocaml", line_numbers=True,
+                          word_wrap=True, indent_guides=True)
 
         # from the start and the length of the substring,
         # find the line number and the column to start in the string
@@ -253,9 +255,9 @@ def parse_interface_match(error, lines):
     for (idx, [impl, intf]) in enumerate(backtrace):
         # TODO: we should find the snippet of the previous frame into the next frame and highlight it
         snippet1 = Syntax(impl, "ocaml", line_numbers=True,
-                          start_line=int(expect_actual[1][1]), word_wrap=True)
+                          start_line=int(expect_actual[1][1]), word_wrap=True, indent_guides=True)
         snippet2 = Syntax(intf, "ocaml", line_numbers=True,
-                          start_line=int(expect_actual[0][1]), word_wrap=True)
+                          start_line=int(expect_actual[0][1]), word_wrap=True, indent_guides=True)
 
         # from the start and the length of the substring,
         # find the line number and the column to start in the string
@@ -385,7 +387,7 @@ def print_error(idx, error):
 
         # use library to output
         snippet = Syntax(snippet, "ocaml", line_numbers=True,
-                         start_line=start_line, highlight_lines=[last_line])
+                         start_line=start_line, highlight_lines=[last_line], indent_guides=True)
 
         # highlight characters
         if error["marker"] != "":
