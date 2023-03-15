@@ -1,0 +1,533 @@
+File "src/lib/pickles/fix_domains.ml", line 24, characters 46-49:
+24 |   domains2 (Impl.constraint_system ~input_typ:typ ~return_typ main)
+                                                   ^^^
+Error: This expression has type
+         ($T_'inner, 'a, field, 'b, 'c) Snarky_backendless.Typ.t =
+           ($T_'inner, 'a, field, 'b,
+            (unit, 'c) Snarky_backendless__.Checked_runner.Simple.t)
+           Snarky_backendless.Types.Typ.T.typ
+       but an expression was expected of type
+         ($T_'inner, 'a) Impl.Typ.t =
+           ($T_'inner, 'a, Impl.Field.Constant.t, Impl.field_var,
+            unit Impl.Internal_Basic.Checked.t)
+           Snarky_backendless.Types.Typ.T.typ
+       The type constructor Impl.field_var would escape its scope
+File "src/lib/pickles/types_map.ml", line 10, characters 15-40:
+10 |   Tick.Field.t Snarky_backendless.Cvar.t
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^
+Error: Unbound module Snarky_backendless.Cvar
+File "src/lib/pickles/wrap_verifier.ml", line 65, characters 61-62:
+65 |         match x with Shifted_value x -> Sponge.absorb sponge x
+                                                                  ^
+Error: This expression has type t = Snarky_bindings.Fq.Cvar.t
+       but an expression was expected of type
+         Inputs.Impl.Field.t = Inputs.Impl.field_var
+File "src/lib/pickles/step_main.ml", line 95, characters 34-44:
+95 |                     { challenge = Field.zero
+                                       ^^^^^^^^^^
+Error: This expression has type
+         Pickles__.Impls.Step.Field.t = Snarky_bindings.Fp.Cvar.t
+       but an expression was expected of type
+         Pickles__.Step_main_inputs.Impl.field Limb_vector.Challenge.t =
+           Pasta_bindings.Fp.t
+File "src/lib/pickles/compile.ml", line 162, characters 21-44:
+162 |                  , ( Impls.Wrap.Impl.Field.t Composition_types.Scalar_challenge.t
+                           ^^^^^^^^^^^^^^^^^^^^^^^
+Error: Unbound module Impls.Wrap.Impl
+File "src/lib/pickles/scalar_challenge.ml", line 1:
+Error: The implementation src/lib/pickles/scalar_challenge.pp.ml
+       does not match the interface src/lib/pickles/.pickles.objs/byte/pickles__Scalar_challenge.cmi:
+        Values do not match:
+          val to_field_checked' :
+            ?num_bits:int ->
+            (module Snarky_backendless.Snark_intf.Run with type field = 'f and type field_var = 'field_var and type run_state = 'state) ->
+            'field_var SC.t -> 'field_var * 'field_var * 'field_var
+        is not included in
+          val to_field_checked' :
+            ?num_bits:int ->
+            (module Snarky_backendless.Snark_intf.Run with type field = 'f and type field_var = 'field_var) ->
+            'field_var Pickles__.Import.Scalar_challenge.t ->
+            'field_var * 'field_var * 'field_var
+        The type
+          ?num_bits:int ->
+          (module Snarky_backendless.Snark_intf.Run with type field = 'a and type field_var = 'b and type run_state = 'c) ->
+          'b SC.t -> 'b * 'b * 'b
+        is not compatible with the type
+          ?num_bits:int ->
+          (module Snarky_backendless.Snark_intf.Run with type field = 'd and type field_var = 'e) ->
+          'e Pickles__.Import.Scalar_challenge.t -> 'e * 'e * 'e
+        Type
+          (module Snarky_backendless.Snark_intf.Run with type field = 'a and type field_var = 'b and type run_state = 'c)
+        is not compatible with type
+          (module Snarky_backendless.Snark_intf.Run with type field = 'd and type field_var = 'e) 
+        File "src/lib/pickles/scalar_challenge.mli", lines 11-17, characters 0-41:
+          Expected declaration
+        File "src/lib/pickles/scalar_challenge.ml", line 12, characters 4-21:
+          Actual declaration
+File "src/lib/pickles/side_loaded_verification_key.ml", line 354, characters 10-29:
+354 |           max_proofs_verified
+                ^^^^^^^^^^^^^^^^^^^
+Error: This expression has type
+         Pickles__.Step_main_inputs.Impl.Impl.field
+         Pickles_base.Proofs_verified.One_hot.Checked.t =
+           (Pickles__.Step_main_inputs.Impl.Impl.field,
+            Pickles_types.Nat.N3.n)
+           One_hot_vector.t
+       but an expression was expected of type
+         (module Snarky_backendless.Snark_intf.Run with type field = 'a and type field_var = 'b)
+File "src/lib/pickles/plonk_curve_ops.ml", line 1:
+Error: The implementation src/lib/pickles/plonk_curve_ops.pp.ml
+       does not match the interface src/lib/pickles/.pickles.objs/byte/pickles__Plonk_curve_ops.cmi:
+        Values do not match:
+          val add_fast :
+            (module Snarky_backendless.Snark_intf.Run with type field = 'f and type field_var = 'field_var and type run_state = 'state) ->
+            ?check_finite:bool ->
+            'field_var * 'field_var ->
+            'field_var * 'field_var -> 'field_var * 'field_var
+        is not included in
+          val add_fast :
+            (module Snarky_backendless.Snark_intf.Run with type field = 'f and type field_var = 'field_var) ->
+            ?check_finite:bool ->
+            'field_var * 'field_var ->
+            'field_var * 'field_var -> 'field_var * 'field_var
+        The type
+          (module Snarky_backendless.Snark_intf.Run with type field = 'a and type field_var = 'b and type run_state = 'c) ->
+          ?check_finite:bool -> 'b * 'b -> 'b * 'b -> 'b * 'b
+        is not compatible with the type
+          (module Snarky_backendless.Snark_intf.Run with type field = 'd and type field_var = 'e) ->
+          ?check_finite:bool -> 'e * 'e -> 'e * 'e -> 'e * 'e
+        Type
+          (module Snarky_backendless.Snark_intf.Run with type field = 'a and type field_var = 'b and type run_state = 'c)
+        is not compatible with type
+          (module Snarky_backendless.Snark_intf.Run with type field = 'd and type field_var = 'e) 
+        File "src/lib/pickles/plonk_curve_ops.mli", lines 1-8, characters 0-28:
+          Expected declaration
+        File "src/lib/pickles/plonk_curve_ops.ml", line 11, characters 4-12:
+          Actual declaration
+File "src/lib/pickles/step_verifier.ml", line 168, characters 32-33:
+168 |                         (module F)
+                                      ^
+Error: Signature mismatch:
+       ...
+       Type declarations do not match:
+         type t = Inputs.Impl.Field.t
+       is not included in
+         type t = Pickles__.Impls.Step.Field.t
+       The type Inputs.Impl.Field.t = Inputs.Impl.field_var
+       is not equal to the type
+         Pickles__.Impls.Step.Field.t = Snarky_bindings.Fp.Cvar.t
+       File "src/lib/pickles/plonk_curve_ops.mli", line 73, characters 4-25:
+         Expected declaration
+       File "src/lib/pickles/step_verifier.ml", line 114, characters 4-20:
+         Actual declaration
+File "src/lib/pickles/wrap_main.ml", lines 232-239, characters 18-24:
+232 | ..................H1.Typ (Impls.Wrap) (Nat) (Challenges_vector)
+233 |                     (Challenges_vector.Constant)
+234 |                     (struct
+235 |                       let f (type n) (n : n Nat.t) =
+236 |                         Vector.typ
+237 |                           (Vector.typ Field.typ Backend.Tock.Rounds.n)
+238 |                           n
+239 |                     end)
+Error: The functor application is ill-typed.
+       These arguments:
+         Pickles__.Impls.Wrap Pickles_types.Nat
+         Pickles__.Import.Types.Challenges_vector
+         Pickles__.Import.Types.Challenges_vector.Constant $S5
+       do not match these parameters:
+         functor (Impl : $T1) (A : Pickles_types.Poly_types.T1)
+         (Var : Pickles_types.Poly_types.T1)
+         (Val : Pickles_types.Poly_types.T1) $T5 -> ...
+       1. Modules do not match:
+            Pickles__.Impls.Wrap :
+            sig
+              module Impl = Pickles__Impls.Wrap.Impl
+              type field = Kimchi_backend.Impls.Tock.Field.t
+              type field_var = Kimchi_backend.Impls.Tock.Cvar.t
+              type run_state =
+                  Snarky_backendless.Snark0.Run.Make(Kimchi_backend.Impls.Tock).run_state
+              module Constraint_system =
+                Pickles__Impls.Wrap.Constraint_system
+              module Bigint = Pickles__Impls.Wrap.Bigint
+              module Constraint = Pickles__Impls.Wrap.Constraint
+              module Typ = Pickles__Impls.Wrap.Typ
+              module Boolean = Pickles__Impls.Wrap.Boolean
+              module Field = Pickles__Impls.Wrap.Field
+              module As_prover = Pickles__Impls.Wrap.As_prover
+              module Proof_inputs = Pickles__Impls.Wrap.Proof_inputs
+              module Internal_Basic = Pickles__Impls.Wrap.Internal_Basic
+              module Bitstring_checked =
+                Pickles__Impls.Wrap.Bitstring_checked
+              module Handle = Pickles__Impls.Wrap.Handle
+              type response = Snarky_backendless__.Request.response
+              val unhandled : response
+              type request =
+                Snarky_backendless__.Request.request =
+                  With : { request : 'a Snarky_backendless__.Request.t;
+                    respond :
+                      'a Snarky_backendless__.Request.Response.t -> response;
+                  } -> request
+              module Handler = Pickles__Impls.Wrap.Handler
+              val assert_ : ?label:string -> Constraint.t -> unit
+              val assert_all : ?label:string -> Constraint.t list -> unit
+              val assert_r1cs :
+                ?label:string -> Field.t -> Field.t -> Field.t -> unit
+              val assert_square : ?label:string -> Field.t -> Field.t -> unit
+              val as_prover : (unit -> unit) As_prover.t -> unit
+              val next_auxiliary : unit -> int
+              val seal : Field.t -> Field.t
+              val request_witness :
+                ('var, 'value) Typ.t ->
+                (unit -> 'value Snarky_backendless__.Request.t) As_prover.t ->
+                'var
+              val perform :
+                (unit -> unit Snarky_backendless__.Request.t) As_prover.t ->
+                unit
+              val request :
+                ?such_that:('var -> unit) ->
+                ('var, 'value) Typ.t ->
+                'value Snarky_backendless__.Request.t -> 'var
+              val exists :
+                ?request:(unit -> 'value Snarky_backendless__.Request.t)
+                         As_prover.t ->
+                ?compute:(unit -> 'value) As_prover.t ->
+                ('var, 'value) Typ.t -> 'var
+              val exists_handle :
+                ?request:(unit -> 'value Snarky_backendless__.Request.t)
+                         As_prover.t ->
+                ?compute:(unit -> 'value) As_prover.t ->
+                ('var, 'value) Typ.t -> ('var, 'value) Handle.t
+              val handle : (unit -> 'a) -> Handler.t -> 'a
+              val handle_as_prover :
+                (unit -> 'a) -> (unit -> Handler.t As_prover.t) -> 'a
+              val if_ :
+                Boolean.var ->
+                typ:('var, 'a) Typ.t -> then_:'var -> else_:'var -> 'var
+              val with_label : string -> (unit -> 'a) -> 'a
+              val make_checked : (unit -> 'a) -> 'a Internal_Basic.Checked.t
+              val constraint_system :
+                input_typ:('input_var, 'input_value) Typ.t ->
+                return_typ:('a, 'b) Typ.t ->
+                ('input_var -> unit -> 'a) -> Constraint_system.t
+              val generate_witness :
+                input_typ:('input_var, 'input_value) Typ.t ->
+                return_typ:('a, 'b) Typ.t ->
+                ('input_var -> unit -> 'a) -> 'input_value -> Proof_inputs.t
+              val generate_public_input :
+                ('input_var, 'input_value) Typ.t ->
+                'input_value -> Field.Constant.Vector.t
+              val generate_witness_conv :
+                f:(Proof_inputs.t -> 'r_value -> 'out) ->
+                input_typ:('input_var, 'input_value) Typ.t ->
+                return_typ:('r_var, 'r_value) Typ.t ->
+                ('input_var -> unit -> 'r_var) -> 'input_value -> 'out
+              val run_unchecked : (unit -> 'a) -> 'a
+              val run_and_check :
+                (unit -> (unit -> 'a) As_prover.t) ->
+                'a Core_kernel.Or_error.t
+              module Run_and_check_deferred =
+                Pickles__Impls.Wrap.Run_and_check_deferred
+              val check : (unit -> 'a) -> unit Core_kernel.Or_error.t
+              val constraint_count :
+                ?weight:(Constraint.t -> int) ->
+                ?log:(?start:bool -> string -> int -> unit) ->
+                (unit -> 'a) -> int
+              val set_constraint_logger :
+                (?at_label_boundary:[ `End | `Start ] * string ->
+                 Constraint.t option -> unit) ->
+                unit
+              val clear_constraint_logger : unit -> unit
+              val in_prover : unit -> bool
+              val in_checked_computation : unit -> bool
+              val constant : ('var, 'value) Typ.t -> 'value -> 'var
+              val run_checked : 'a Internal_Basic.Checked.t -> 'a
+              module Number = Pickles__Impls.Wrap.Number
+              module Enumerable = Pickles__Impls.Wrap.Enumerable
+              module Challenge = Pickles__Impls.Wrap.Challenge
+              module Digest = Pickles__Impls.Wrap.Digest
+              module Wrap_field = Backend.Tock.Field
+              module Step_field = Backend.Tick.Field
+              module Verification_key = Backend.Tock.Verification_key
+              module Proving_key = Backend.Tock.Proving_key
+              module Keypair = Pickles__Impls.Wrap.Keypair
+              module Other_field = Pickles__Impls.Wrap.Other_field
+              val input :
+                unit ->
+                ((Impl.Field.t,
+                  Impl.Field.t Composition_types.Scalar_challenge.t,
+                  Impl.Field.t Pickles_types.Shifted_value.Type1.t,
+                  (Impl.Field.t Pickles_types.Shifted_value.Type1.t,
+                   Impl.field_var Snarky_backendless.Snark_intf.Boolean0.t)
+                  Pickles_types.Plonk_types.Opt.t,
+                  (Impl.Field.t Composition_types.Scalar_challenge.t
+                   Composition_types.Wrap.Proof_state.Deferred_values.Plonk.In_circuit.Lookup.t,
+                   Impl.field_var Snarky_backendless.Snark_intf.Boolean0.t)
+                  Pickles_types.Plonk_types.Opt.t, Impl.Boolean.var,
+                  Impl.field_var, Impl.field_var, Impl.field_var,
+                  (Impl.field_var Kimchi_backend_common.Scalar_challenge.t
+                   Composition_types.Bulletproof_challenge.t,
+                   Pickles_types.Nat.z Backend.Tick.Rounds.plus_n)
+                  Pickles_types.Vector.t Pickles_types.Hlist0.Id.t,
+                  Impl.field_var)
+                 Pickles__.Import.Types.Wrap.Statement.In_circuit.t,
+                 (Limb_vector.Challenge.Constant.t,
+                  Limb_vector.Challenge.Constant.t
+                  Composition_types.Scalar_challenge.t,
+                  Other_field.Constant.t Pickles_types.Shifted_value.Type1.t,
+                  Other_field.Constant.t Pickles_types.Shifted_value.Type1.t
+                  option,
+                  Limb_vector.Challenge.Constant.t
+                  Composition_types.Scalar_challenge.t
+                  Composition_types.Wrap.Proof_state.Deferred_values.Plonk.In_circuit.Lookup.t
+                  option, bool,
+                  (Limb_vector.Constant.Hex64.t,
+                   Composition_types.Digest.Limbs.n)
+                  Pickles_types.Vector.vec,
+                  (Limb_vector.Constant.Hex64.t,
+                   Composition_types.Digest.Limbs.n)
+                  Pickles_types.Vector.vec,
+                  (Limb_vector.Constant.Hex64.t,
+                   Composition_types.Digest.Limbs.n)
+                  Pickles_types.Vector.vec,
+                  (Limb_vector.Challenge.Constant.t
+                   Kimchi_backend_common.Scalar_challenge.t
+                   Composition_types.Bulletproof_challenge.t,
+                   Pickles_types.Nat.z Backend.Tick.Rounds.plus_n)
+                  Pickles_types.Vector.t Pickles_types.Hlist0.Id.t,
+                  Composition_types.Branch_data.t)
+                 Pickles__.Import.Types.Wrap.Statement.In_circuit.t,
+                 Pickles__Impls.Wrap_impl.field,
+                 Pickles__Impls.Wrap_impl.field_var,
+                 Pickles__Impls.Wrap_impl.run_state)
+                Pickles__.Import.Spec.ETyp.t
+            end
+          is not included in
+            $T1 = sig type field type field_var type state end
+          The type `state' is required but not provided
+          File "src/lib/pickles_types/hlist.mli", line 336, characters 7-17:
+            Expected declaration
+       2. Modules do not match:
+            Pickles_types.Nat :
+            sig
+              type z = Pickles_types.Nat.z = Z of z
+              type 'a s = 'a Pickles_types.Nat.s = Z | S of 'a
+              type 'a t =
+                'a Pickles_types.Nat.t =
+                  Z : z t
+                | S : 'n t -> 'n s t
+              type 'a nat = 'a t
+              type e = Pickles_types.Nat.e = T : 'n nat -> e
+              module type Intf = Pickles_types.Nat.Intf
+              module Adds = Pickles_types.Nat.Adds
+              module Lte = Pickles_types.Nat.Lte
+              module Add = Pickles_types.Nat.Add
+              module type I = Pickles_types.Nat.I
+              module N0 = Pickles_types.Nat.N0
+              module N1 = Pickles_types.Nat.N1
+              module N2 = Pickles_types.Nat.N2
+              module N3 = Pickles_types.Nat.N3
+              module N4 = Pickles_types.Nat.N4
+              module N5 = Pickles_types.Nat.N5
+              module N6 = Pickles_types.Nat.N6
+              module N7 = Pickles_types.Nat.N7
+              module N8 = Pickles_types.Nat.N8
+              module N9 = Pickles_types.Nat.N9
+              module N10 = Pickles_types.Nat.N10
+              module N11 = Pickles_types.Nat.N11
+              module N12 = Pickles_types.Nat.N12
+              module N13 = Pickles_types.Nat.N13
+              module N14 = Pickles_types.Nat.N14
+              module N15 = Pickles_types.Nat.N15
+              module N16 = Pickles_types.Nat.N16
+              module N17 = Pickles_types.Nat.N17
+              module N18 = Pickles_types.Nat.N18
+              module N19 = Pickles_types.Nat.N19
+              module N20 = Pickles_types.Nat.N20
+              module N21 = Pickles_types.Nat.N21
+              module N22 = Pickles_types.Nat.N22
+              module N23 = Pickles_types.Nat.N23
+              module N24 = Pickles_types.Nat.N24
+              module N25 = Pickles_types.Nat.N25
+              module N26 = Pickles_types.Nat.N26
+              module N27 = Pickles_types.Nat.N27
+              module N28 = Pickles_types.Nat.N28
+              module N29 = Pickles_types.Nat.N29
+              module N30 = Pickles_types.Nat.N30
+              module N31 = Pickles_types.Nat.N31
+              module N32 = Pickles_types.Nat.N32
+              module N33 = Pickles_types.Nat.N33
+              module N34 = Pickles_types.Nat.N34
+              module N35 = Pickles_types.Nat.N35
+              module N36 = Pickles_types.Nat.N36
+              module N37 = Pickles_types.Nat.N37
+              module N38 = Pickles_types.Nat.N38
+              module N39 = Pickles_types.Nat.N39
+              module N40 = Pickles_types.Nat.N40
+              module N41 = Pickles_types.Nat.N41
+              module N42 = Pickles_types.Nat.N42
+              module N43 = Pickles_types.Nat.N43
+              module N44 = Pickles_types.Nat.N44
+              module N45 = Pickles_types.Nat.N45
+              module N46 = Pickles_types.Nat.N46
+              module N47 = Pickles_types.Nat.N47
+              module N48 = Pickles_types.Nat.N48
+              module Empty = Pickles_types.Nat.Empty
+              module Not = Pickles_types.Nat.Not
+              val to_int : 'n t -> int
+              val of_int : int -> e
+              val lte_exn : 'a nat -> 'b nat -> ('a, 'b) Lte.t
+              val eq_exn :
+                'n nat -> 'm nat -> ('n, 'm) Core_kernel.Type_equal.t
+              val compare :
+                'n t ->
+                'm t ->
+                [ `Gt of ('n, 'm) Lte.t Not.t | `Lte of ('n, 'm) Lte.t ]
+              val gt_implies_gte :
+                'n nat -> 'm nat -> ('n, 'm) Lte.t Not.t -> ('m, 'n) Lte.t
+            end
+          is not included in
+            Pickles_types.Poly_types.T1
+       3. Modules do not match:
+            Pickles__.Import.Types.Challenges_vector :
+            sig
+              type ('field_var, 'n) t =
+                  ('field_var Composition_types.Wrap_bp_vec.t, 'n)
+                  Pickles_types.Vector.t
+              module Constant = Composition_types.Challenges_vector.Constant
+            end
+          is not included in
+            Pickles_types.Poly_types.T1
+       4. Modules do not match:
+            Pickles__.Import.Types.Challenges_vector.Constant :
+            sig
+              type 'n t =
+                  (Backend.Tock.Field.t Composition_types.Wrap_bp_vec.t, 'n)
+                  Pickles_types.Vector.t
+            end
+          is not included in
+            Pickles_types.Poly_types.T1
+       5. Modules do not match:
+            $S5 :
+            sig
+              val f :
+                'n Pickles_types.Nat.t ->
+                (((Pickles__.Wrap_main_inputs.Impl.Field.t,
+                   Pickles_types.Nat.z Backend.Tock.Rounds.plus_n)
+                  Pickles_types.Vector.vec, 'n)
+                 Pickles_types.Vector.vec,
+                 ((Pickles__.Wrap_main_inputs.Impl.Field.Constant.t,
+                   Pickles_types.Nat.z Backend.Tock.Rounds.plus_n)
+                  Pickles_types.Vector.vec, 'n)
+                 Pickles_types.Vector.vec,
+                 Pickles__Impls.Wrap.Field.Constant.t,
+                 Pickles__Impls.Wrap.Field.t,
+                 Pickles__Impls.Wrap.Internal_Basic.state)
+                Snarky_backendless.Typ.t
+            end
+          is not included in
+            $T5 =
+            sig
+              val f :
+                'a A.t ->
+                ('a Var.t, 'a Val.t, Impl.field, Impl.field_var, Impl.state)
+                Snarky_backendless.Typ.t
+            end
+          Values do not match:
+            val f :
+              'n Pickles_types.Nat.t ->
+              (((Pickles__.Wrap_main_inputs.Impl.Field.t,
+                 Pickles_types.Nat.z Backend.Tock.Rounds.plus_n)
+                Pickles_types.Vector.vec, 'n)
+               Pickles_types.Vector.vec,
+               ((Pickles__.Wrap_main_inputs.Impl.Field.Constant.t,
+                 Pickles_types.Nat.z Backend.Tock.Rounds.plus_n)
+                Pickles_types.Vector.vec, 'n)
+               Pickles_types.Vector.vec,
+               Pickles__Impls.Wrap.Field.Constant.t,
+               Pickles__Impls.Wrap.Field.t,
+               Pickles__Impls.Wrap.Internal_Basic.state)
+              Snarky_backendless.Typ.t
+          is not included in
+            val f :
+              'a Pickles_types.Nat.t ->
+              ('a Pickles__.Import.Types.Challenges_vector.t,
+               'a Pickles__.Import.Types.Challenges_vector.Constant.t,
+               Pickles__.Impls.Wrap.field, Pickles__.Impls.Wrap.field_var,
+               Pickles__.Impls.Wrap.state)
+              Snarky_backendless.Typ.t
+          The type
+            'a Pickles_types.Nat.t ->
+            (((Pickles__.Wrap_main_inputs.Impl.Field.t,
+               Pickles_types.Nat.z Backend.Tock.Rounds.plus_n)
+              Pickles_types.Vector.vec, 'a)
+             Pickles_types.Vector.vec,
+             ((Pickles__.Wrap_main_inputs.Impl.Field.Constant.t,
+               Pickles_types.Nat.z Backend.Tock.Rounds.plus_n)
+              Pickles_types.Vector.vec, 'a)
+             Pickles_types.Vector.vec, Pickles__Impls.Wrap.Field.Constant.t,
+             Pickles__Impls.Wrap.Field.t,
+             Pickles__Impls.Wrap.Internal_Basic.state)
+            Snarky_backendless.Typ.t
+          is not compatible with the type
+            'a Pickles_types.Nat.t ->
+            ('a Pickles__.Import.Types.Challenges_vector.t,
+             'a Pickles__.Import.Types.Challenges_vector.Constant.t,
+             Pickles__.Impls.Wrap.field, Pickles__.Impls.Wrap.field_var,
+             Pickles__.Impls.Wrap.state)
+            Snarky_backendless.Typ.t
+          Type
+            (((Pickles__.Wrap_main_inputs.Impl.Field.t,
+               Pickles_types.Nat.z Backend.Tock.Rounds.plus_n)
+              Pickles_types.Vector.vec, 'a)
+             Pickles_types.Vector.vec,
+             ((Pickles__.Wrap_main_inputs.Impl.Field.Constant.t,
+               Pickles_types.Nat.z Backend.Tock.Rounds.plus_n)
+              Pickles_types.Vector.vec, 'a)
+             Pickles_types.Vector.vec, Pickles__Impls.Wrap.Field.Constant.t,
+             Pickles__Impls.Wrap.Field.t,
+             Pickles__Impls.Wrap.Internal_Basic.state)
+            Snarky_backendless.Typ.t =
+              (((Pickles__.Wrap_main_inputs.Impl.Field.t,
+                 Pickles_types.Nat.z Backend.Tock.Rounds.plus_n)
+                Pickles_types.Vector.vec, 'a)
+               Pickles_types.Vector.vec,
+               ((Pickles__.Wrap_main_inputs.Impl.Field.Constant.t,
+                 Pickles_types.Nat.z Backend.Tock.Rounds.plus_n)
+                Pickles_types.Vector.vec, 'a)
+               Pickles_types.Vector.vec,
+               Pickles__Impls.Wrap.Field.Constant.t,
+               Pickles__Impls.Wrap.Field.t,
+               (unit, Pickles__Impls.Wrap.Internal_Basic.state)
+               Snarky_backendless__.Checked_runner.Simple.t)
+              Snarky_backendless.Types.Typ.T.typ
+          is not compatible with type
+            ('a Pickles__.Import.Types.Challenges_vector.t,
+             'a Pickles__.Import.Types.Challenges_vector.Constant.t,
+             Pickles__.Impls.Wrap.field, Pickles__.Impls.Wrap.field_var,
+             Pickles__.Impls.Wrap.state)
+            Snarky_backendless.Typ.t =
+              ('a Pickles__.Import.Types.Challenges_vector.t,
+               'a Pickles__.Import.Types.Challenges_vector.Constant.t,
+               Pickles__.Impls.Wrap.field, Pickles__.Impls.Wrap.field_var,
+               (unit, Pickles__.Impls.Wrap.state)
+               Snarky_backendless__.Checked_runner.Simple.t)
+              Snarky_backendless.Types.Typ.T.typ 
+          Type
+            ((Pickles__.Wrap_main_inputs.Impl.Field.t,
+              Pickles_types.Nat.z Backend.Tock.Rounds.plus_n)
+             Pickles_types.Vector.vec, 'a)
+            Pickles_types.Vector.vec =
+              ((Pickles__.Wrap_main_inputs.Impl.Field.t,
+                Pickles_types.Nat.z Backend.Tock.Rounds.plus_n)
+               Pickles_types.Vector.vec, 'a)
+              Pickles_types.Vector.T.t
+          is not compatible with type
+            'a Pickles__.Import.Types.Challenges_vector.t 
+          File "src/lib/pickles_types/hlist.mli", lines 342-349, characters 7-36:
+            Expected declaration
+          File "src/lib/pickles/wrap_main.ml", line 235, characters 26-27:
+            Actual declaration
+File "src/lib/pickles/pickles.ml", line 1153, characters 13-33:
+1153 |             (Impls.Step.Keypair.t * Dirty.t) Lazy.t
+                    ^^^^^^^^^^^^^^^^^^^^
+Error: Unbound module Impls.Step.Keypair

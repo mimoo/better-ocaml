@@ -37,6 +37,7 @@ def parse_error_inner(error, lines):
         return Text(full)
 
 
+@group()
 def parse_backtrace(lines):
     frame_error = ""
     backtrace = []
@@ -63,8 +64,14 @@ def parse_backtrace(lines):
     backtrace.reverse()
 
     # second pass on the backtrace to get split the "impl" and "intf"
+    additional_error = ""
+    to_delete = []
     for (idx, bt) in enumerate(backtrace):
-        if "is not compatible with type" in bt:
+        if "would escape its scope" in bt:
+            to_delete.append(idx)
+            additional_error = bt
+            continue
+        elif "is not compatible with type" in bt:
             backtrace[idx] = bt.split("is not compatible with type")
         elif "is not compatible with the type" in bt:
             backtrace[idx] = bt.split("is not compatible with the type")
@@ -82,19 +89,10 @@ def parse_backtrace(lines):
         backtrace[idx][0] = backtrace[idx][0].strip()
         backtrace[idx][1] = backtrace[idx][1].strip()
 
-    return backtrace
-
-
-@group()
-def parse_expression_mismatch(error, lines):
-    desc = error
-    error_started = False
-    the_error = ""
-
-    backtrace = parse_backtrace(lines)
-
-    # description
-    yield Text("the implementation does not match the interface\n")
+    # remove the additional error
+    to_delete.reverse()
+    for idx in to_delete:
+        del backtrace[idx]
 
     # files
     table = Table(expand=True, box=None)
@@ -145,7 +143,26 @@ def parse_expression_mismatch(error, lines):
         col2 = Panel(snippet2)
         table.add_row(col1, col2)
 
+    # add the additional error
+    panel = Panel(Text(additional_error),
+                  title="Additional error", style="red")
+    yield panel
+
     yield table
+
+
+@group()
+def parse_expression_mismatch(error, lines):
+    desc = error
+    error_started = False
+    the_error = ""
+
+    backtrace = parse_backtrace(lines)
+
+    # description
+    yield Text("the implementation does not match the interface\n")
+
+    yield backtrace
 
 
 @ group()
@@ -371,13 +388,14 @@ def print_error(idx, error):
                          start_line=start_line, highlight_lines=[last_line])
 
         # highlight characters
-        highlight_chars = [pos for pos, char in enumerate(
-            error["marker"]) if char == "^"]
-        offset = len(start_line_str) + 3
-        s1 = highlight_chars[0] - offset
-        s2 = highlight_chars[-1] + 1 - offset
-        style = Style(bgcolor='deep_pink4')
-        snippet.stylize_range(style, (1, s1), (1, s2))
+        if error["marker"] != "":
+            highlight_chars = [pos for pos, char in enumerate(
+                error["marker"]) if char == "^"]
+            offset = len(start_line_str) + 3
+            s1 = highlight_chars[0] - offset
+            s2 = highlight_chars[-1] + 1 - offset
+            style = Style(bgcolor='deep_pink4')
+            snippet.stylize_range(style, (1, s1), (1, s2))
 
         # print snippet
 
