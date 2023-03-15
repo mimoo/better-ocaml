@@ -459,23 +459,29 @@ def main():
     # read stdin
     compiler_output = sys.stdin.readlines()
     if len(compiler_output) == 0:
-        print("No errors found!")
+        console.print("No errors found!")
         return
 
     # split errors
     errors = split_errors(compiler_output)
-    print(f"Found {len(errors)} errors")
+    num_errors = len(errors)
+    errors_found = Text(f"\nFound {num_errors} errors\n", justify="center")
+    errors_found.stylize("bold magenta", 7, 7 + len(str(num_errors)))
+    console.print(errors_found)
 
     # print errors
     for (idx, error) in enumerate(errors):
         # error number
-        progress = ProgressBar(total=len(errors), completed=idx+1)
+        progress = ProgressBar(total=len(errors), completed=idx)
         console.print(progress)
 
         # parse
         res = parse_error(error)
         print_error(idx, res)
-        print("\n\n")
+        console.print("\n")
+
+    # finished progress bar
+    console.print(ProgressBar(total=len(errors), completed=len(errors)))
 
 
 if __name__ == "__main__":
